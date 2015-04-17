@@ -22,7 +22,7 @@ void compileFunction(Function& f, string name) {
     cmd = "gcc -shared -O2 -o " + libraryname + " " + sourcename;
     cmd = "gcc -shared -o " + libraryname + " " + sourcename;
 #endif
-    ::system(cmd.c_str());
+//    ::system(cmd.c_str());
 }
 
 void loadFunction(Function& f, string name) {
