@@ -597,11 +597,11 @@ int main(int argc, char** argv) {
 
 #ifdef AMAZON
     //    path resdir("/home/ubuntu/Dropbox/Amazon EC2/Simulation Results/Gutzwiller Phase Diagram");
-    path resdir("/home/ubuntu/Dropbox/Amazon EC2/Simulation Results/Canonical Transformation Gutzwiller");
+    path resdir("/home/ubuntu/Dropbox/Amazon EC2/Simulation Results/Canonical Transformation Gutzwiller U");
     //    path resdir("/media/ubuntu/Results/CTG");
 #else
     //    path resdir("/Users/Abuenameh/Dropbox/Amazon EC2/Simulation Results/Gutzwiller Phase Diagram");
-    path resdir("/Users/Abuenameh/Documents/Simulation Results/Canonical Transformation Gutzwiller");
+    path resdir("/Users/Abuenameh/Documents/Simulation Results/Canonical Transformation Gutzwiller U");
     //    path resdir("/Users/Abuenameh/Documents/Simulation Results/Canonical Transformation Gutzwiller Amazon");
     //    path resdir("/User/Abuenameh/Dropbox/Amazon EC2/Simulation Results/Canonical Transformation Gutzwiller");
 #endif
