@@ -855,18 +855,22 @@ int main(int argc, char** argv) {
                 uthreads.create_thread(bind(&phasepoints, boost::ref(xi), theta, boost::ref(upoints), boost::ref(upointRes), boost::ref(uprogress)));
             }
             uthreads.join_all();
+            cout << "Here 1" << endl;
 
             vector<Sample> uWmuBWfsfmin;
 
             for (PointResults pres : upointRes) {
                 uWmuBWfsfmin.push_back(make_tuple(pres.x, pres.mu, BWfs(pres.fs), BWfmin(pres.fmin)));
             }
+            cout << "Here 2" << endl;
             sort(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [](const Sample& a, const Sample & b) {
                 return get<0>(a) < get<0>(b);
             });
+            cout << "Here 3" << endl;
             stable_sort(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [](const Sample& a, const Sample & b) {
                 return get<1>(a) < get<1>(b);
             });
+            cout << "Here 4" << endl;
             vector<Sample> usampbound1;
             for (int ix = 0; ix < nusampx; ix++) {
                 auto inner = find_if(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [&](const Sample & a) {
@@ -879,6 +883,7 @@ int main(int argc, char** argv) {
                     usampbound1.push_back(*boundary);
                 }
             }
+            cout << "Here 5" << endl;
             for (int bix = 0; bix < usampbound1.size() - 1; bix++) {
                 double x1 = get<0>(usampbound1[bix]);
                 double x2 = get<0>(usampbound1[bix + 1]);
@@ -910,6 +915,7 @@ int main(int argc, char** argv) {
                     }
                 }
             }
+            cout << "Here 6" << endl;
             /*vector<Sample> usampbound2;
             for (int ix = 0; ix < nusampx; ix++) {
                 auto boundary = find_if(uWmuBWfsfmin.rbegin(), uWmuBWfsfmin.rend(), [&](const Sample & a) {
