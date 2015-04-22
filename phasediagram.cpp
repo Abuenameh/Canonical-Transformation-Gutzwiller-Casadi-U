@@ -855,22 +855,18 @@ int main(int argc, char** argv) {
                 uthreads.create_thread(bind(&phasepoints, boost::ref(xi), theta, boost::ref(upoints), boost::ref(upointRes), boost::ref(uprogress)));
             }
             uthreads.join_all();
-            cout << "Here 1" << endl;
 
             vector<Sample> uWmuBWfsfmin;
 
             for (PointResults pres : upointRes) {
                 uWmuBWfsfmin.push_back(make_tuple(pres.x, pres.mu, BWfs(pres.fs), BWfmin(pres.fmin)));
             }
-            cout << "Here 2" << endl;
             sort(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [](const Sample& a, const Sample & b) {
                 return get<0>(a) < get<0>(b);
             });
-            cout << "Here 3" << endl;
             stable_sort(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [](const Sample& a, const Sample & b) {
                 return get<1>(a) < get<1>(b);
             });
-            cout << "Here 4" << endl;
             vector<Sample> usampbound1;
             for (int ix = 0; ix < nusampx; ix++) {
                 auto inner = find_if(uWmuBWfsfmin.begin(), uWmuBWfsfmin.end(), [&](const Sample & a) {
@@ -883,28 +879,43 @@ int main(int argc, char** argv) {
                     usampbound1.push_back(*boundary);
                 }
             }
-            cout << "Here 5" << endl;
             for (int bix = 0; bix < usampbound1.size() - 1; bix++) {
+                cout << "Here 1" << endl;
                 double x1 = get<0>(usampbound1[bix]);
+                cout << "Here 2" << endl;
                 double x2 = get<0>(usampbound1[bix + 1]);
+                cout << "Here 3" << endl;
                 double mu1 = get<1>(usampbound1[bix]);
+                cout << "Here 4" << endl;
                 double mu2 = get<1>(usampbound1[bix + 1]);
+                cout << "Here 5" << endl;
                 double dx = (x2 - x1) / (nx - 1);
+                cout << "Here 6" << endl;
                 for (int ix = 0; ix < nx; ix++) {
                     if (ix < nx - 1 || (bix == usampbound1.size() - 2)) {
+                        cout << "Here 7" << endl;
                         double mu0 = ix * dx * (mu2 - mu1) / (x2 - x1) + mu1;
+                        cout << "Here 8" << endl;
                         double mui = max(mumin, mu0 - muwidth);
+                        cout << "Here 9" << endl;
                         double muf = min(mumax, mu0 + muwidth);
+                        cout << "Here 10" << endl;
                         deque<double> mu(nmu);
+                        cout << "Here 11" << endl;
                         if (nmu == 1) {
+                            cout << "Here 12" << endl;
                             mu[0] = mui;
                         }
                         else {
+                            cout << "Here 13" << endl;
                             double dmu = (muf - mui) / (nmu - 1);
+                            cout << "Here 14" << endl;
                             for (int imu = 0; imu < nmu; imu++) {
+                                cout << "Here 15" << endl;
                                 mu[imu] = mui + imu * dmu;
                             }
                         }
+                        cout << "Here 16" << endl;
                         for (int imu = 0; imu < nmu; imu++) {
                             Point point;
                             point.x = x1 + ix * dx;
