@@ -819,7 +819,7 @@ int main(int argc, char** argv) {
             }
 
             queue<Point> upoints;
-            double muusampwidth = 0.05;
+            double muusampwidth = 0.1;
             for (int ix = 0; ix < nusampx; ix++) {
                 //                                    double mu0 = 1.0275844755940469 - 1.3286603408812447e-12*usampx[ix] - 1.9177090288512203e-23*usampx[ix]*usampx[ix] + 9.572518996956652e-35*usampx[ix]*usampx[ix]*usampx[ix] - 2.095759744296641e-46*usampx[ix]*usampx[ix]*usampx[ix]*usampx[ix]; // Delta 0.25
                 //                double mu0 = mufunc015u(usampx[ix]);
@@ -876,46 +876,48 @@ int main(int argc, char** argv) {
                     return get<0>(a) == usampx[ix] && get<3>(a) == 0;
                 });
                 if (boundary != uWmuBWfsfmin.end()) {
+//                    cout << "boundary != end" << endl;
                     usampbound1.push_back(*boundary);
                 }
             }
+            cout << usampbound1.size() << endl;
             for (int bix = 0; bix < usampbound1.size() - 1; bix++) {
-                cout << "Here 1" << endl;
+//                cout << "Here 1" << endl;
                 double x1 = get<0>(usampbound1[bix]);
-                cout << "Here 2" << endl;
+//                cout << "Here 2" << endl;
                 double x2 = get<0>(usampbound1[bix + 1]);
-                cout << "Here 3" << endl;
+//                cout << "Here 3" << endl;
                 double mu1 = get<1>(usampbound1[bix]);
-                cout << "Here 4" << endl;
+//                cout << "Here 4" << endl;
                 double mu2 = get<1>(usampbound1[bix + 1]);
-                cout << "Here 5" << endl;
+//                cout << "Here 5" << endl;
                 double dx = (x2 - x1) / (nx - 1);
-                cout << "Here 6" << endl;
+//                cout << "Here 6" << endl;
                 for (int ix = 0; ix < nx; ix++) {
                     if (ix < nx - 1 || (bix == usampbound1.size() - 2)) {
-                        cout << "Here 7" << endl;
+//                        cout << "Here 7" << endl;
                         double mu0 = ix * dx * (mu2 - mu1) / (x2 - x1) + mu1;
-                        cout << "Here 8" << endl;
+//                        cout << "Here 8" << endl;
                         double mui = max(mumin, mu0 - muwidth);
-                        cout << "Here 9" << endl;
+//                        cout << "Here 9" << endl;
                         double muf = min(mumax, mu0 + muwidth);
-                        cout << "Here 10" << endl;
+//                        cout << "Here 10" << endl;
                         deque<double> mu(nmu);
-                        cout << "Here 11" << endl;
+//                        cout << "Here 11" << endl;
                         if (nmu == 1) {
-                            cout << "Here 12" << endl;
+//                            cout << "Here 12" << endl;
                             mu[0] = mui;
                         }
                         else {
-                            cout << "Here 13" << endl;
+//                            cout << "Here 13" << endl;
                             double dmu = (muf - mui) / (nmu - 1);
-                            cout << "Here 14" << endl;
+//                            cout << "Here 14" << endl;
                             for (int imu = 0; imu < nmu; imu++) {
-                                cout << "Here 15" << endl;
+//                                cout << "Here 15" << endl;
                                 mu[imu] = mui + imu * dmu;
                             }
                         }
-                        cout << "Here 16" << endl;
+//                        cout << "Here 16" << endl;
                         for (int imu = 0; imu < nmu; imu++) {
                             Point point;
                             point.x = x1 + ix * dx;
@@ -926,7 +928,7 @@ int main(int argc, char** argv) {
                     }
                 }
             }
-            cout << "Here 6" << endl;
+//            cout << "Here 6" << endl;
             /*vector<Sample> usampbound2;
             for (int ix = 0; ix < nusampx; ix++) {
                 auto boundary = find_if(uWmuBWfsfmin.rbegin(), uWmuBWfsfmin.rend(), [&](const Sample & a) {
