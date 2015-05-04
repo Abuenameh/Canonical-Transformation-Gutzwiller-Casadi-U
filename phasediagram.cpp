@@ -672,7 +672,7 @@ int main(int argc, char** argv) {
         queue<Point> points2;
         //            if (false)
         {
-            /*double muwidth = 0.075;
+            double muwidth = 0.075;
             //            queue<Point> points;
 
             queue<Point> lpoints;
@@ -915,7 +915,7 @@ int main(int argc, char** argv) {
                         }
                     }
                 }
-            }*/
+            }
 //            cout << "Here 6" << endl;
             /*vector<Sample> usampbound2;
             for (int ix = 0; ix < nusampx; ix++) {
@@ -958,7 +958,7 @@ int main(int argc, char** argv) {
                 }
             }*/
 
-            /*int nudx = 5;
+            int nudx = 5;
             for (int ix = 0; ix < nudx * (nusampx - 1); ix++) {
                 double sx = xumin + dusampx * ix / nudx;
                 if (sx > get<0>(usampbound1.back()))
@@ -1006,7 +1006,7 @@ int main(int argc, char** argv) {
                     point.mu = mu[imu];
                     points.push(point);
                 }
-            }*/
+            }
 
         }
 
@@ -1055,7 +1055,6 @@ int main(int argc, char** argv) {
         //            double xtipwidth = 1e10;
         double xtipmin = xtip - xtipwidth;
         double xtipmax = xtip + xtipwidth;
-        ;
         double dxtip = (xtipmax - xtipmin) / (nxtip - 1);
         double mutip = 0.2;//0.27;
         double mutipwidth = 0.12;//0.15;
@@ -1071,7 +1070,7 @@ int main(int argc, char** argv) {
                 Point point;
                 point.x = tx;
                 point.mu = tmu;
-                                    points.push(point);
+//                                    points.push(point);
                 //                    points2.push(point);
             }
         }
