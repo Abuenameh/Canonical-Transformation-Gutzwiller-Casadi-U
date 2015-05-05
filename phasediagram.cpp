@@ -232,15 +232,15 @@ void phasepoints(Parameter& xi, double theta, queue<Point>& points, vector<Point
         //            U0 += U[i] / L;
         //        }
         for (int i = 0; i < L; i++) {
-            U[i] = xi[i]; //1;//UW(W[i]) / UW(point.x) / scale;
+            U[i] = UW(W[i]) / UW(point.x) / scale;//xi[i]; //1;//UW(W[i]) / UW(point.x) / scale;
             //            U[i] = 1 / scale;
             dU[i] = U[i] - U0;
-            J[i] = point.x;
+//            J[i] = point.x;
             //            J[i] = xi[i]*point.x;//JWij(W[i], W[mod(i + 1)]) / UW(point.x) / scale;
-            //            J[i] = JWij(point.x, point.x) / UW(point.x) / scale;
+                        J[i] = JWij(point.x, point.x) / UW(point.x) / scale;
         }
-        pointRes.Ux = 1; //UW(point.x);
-        pointRes.Jx = point.x; //JWij(point.x, point.x);
+        pointRes.Ux = UW(point.x);//1; //UW(point.x);
+        pointRes.Jx = JWij(point.x, point.x);//point.x; //JWij(point.x, point.x);
         pointRes.J = J;
         pointRes.U = U;
 
@@ -1025,7 +1025,7 @@ int main(int argc, char** argv) {
                 Point point;
                 point.x = corx;
                 point.mu = cormu;
-                                    points.push(point);
+//                                    points.push(point);
             }
         }
 
@@ -1318,7 +1318,7 @@ int main(int argc, char** argv) {
                     Point point;
                     point.x = x[ix];
                     point.mu = mu[imu];
-                    //                            points.push(point);
+                                                points.push(point);
                 }
             }
         }
