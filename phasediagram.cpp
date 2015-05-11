@@ -236,8 +236,8 @@ void phasepoints(Parameter& xi, double theta, queue<Point>& points, vector<Point
             //            U[i] = 1 / scale;
             dU[i] = U[i] - U0;
 //            J[i] = point.x;
-                        J[i] = JWij(W[i], W[mod(i + 1)]) / UW(point.x) / scale;//xi[i]*point.x;//JWij(W[i], W[mod(i + 1)]) / UW(point.x) / scale;
-//                        J[i] = JWij(point.x, point.x) / UW(point.x) / scale;
+//                        J[i] = JWij(W[i], W[mod(i + 1)]) / UW(point.x) / scale;//xi[i]*point.x;//JWij(W[i], W[mod(i + 1)]) / UW(point.x) / scale;
+                        J[i] = JWij(point.x, point.x) / UW(point.x) / scale;
         }
         pointRes.Ux = UW(point.x);//1; //UW(point.x);
         pointRes.Jx = JWij(point.x, point.x);//point.x; //JWij(point.x, point.x);
@@ -680,7 +680,7 @@ int main(int argc, char** argv) {
         queue<Point> points2;
         //            if (false)
         {
-            double muwidth = 0.075;
+            /*double muwidth = 0.075;
             //            queue<Point> points;
 
             queue<Point> lpoints;
@@ -927,7 +927,7 @@ int main(int argc, char** argv) {
                         }
                     }
                 }
-            }
+            }*/
 //            cout << "Here 6" << endl;
             /*vector<Sample> usampbound2;
             for (int ix = 0; ix < nusampx; ix++) {
@@ -970,7 +970,7 @@ int main(int argc, char** argv) {
                 }
             }*/
 
-            int nudx = 5;
+            /*int nudx = 5;
             for (int ix = 0; ix < nudx * (nusampx - 1); ix++) {
                 double sx = xumin + dusampx * ix / nudx;
                 if (sx > get<0>(usampbound1.back()))
@@ -1020,15 +1020,15 @@ int main(int argc, char** argv) {
                     point.mu = mu[imu];
                     points.push(point);
                 }
-            }
+            }*/
 
         }
 
-        double corxmin = 0.01;//2e10;
-        double corxmax = 0.05;//9e10;
+        double corxmin = 2e10;//0.01;//2e10;
+        double corxmax = 9e10;//0.05;//9e10;
         int ncorx = 61;
         double dcorx = (corxmax - corxmin) / (ncorx - 1);
-        double cormumin = 0.6;//0.5;
+        double cormumin = 0.5;//0.6;//0.5;
         double cormumax = 1;
         int ncormu = 51;
         double dcormu = (cormumax - cormumin) / (ncormu - 1);
@@ -1039,7 +1039,7 @@ int main(int argc, char** argv) {
                 Point point;
                 point.x = corx;
                 point.mu = cormu;
-//                                    points.push(point);
+                                    points.push(point);
             }
         }
 
