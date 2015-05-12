@@ -1072,7 +1072,7 @@ int main(int argc, char** argv) {
         double xtipmin = xtip - xtipwidth;
         double xtipmax = xtip + xtipwidth;
         double dxtip = (xtipmax - xtipmin) / (nxtip - 1);
-        double mutip = 0.27;//0.2;//0.27;
+        double mutip = 0.25;//0.2;//0.27;
         double mutipwidth = 0.15;//0.12;//0.15;
         double mutipmin = mutip - mutipwidth;
         double mutipmax = mutip + mutipwidth;
