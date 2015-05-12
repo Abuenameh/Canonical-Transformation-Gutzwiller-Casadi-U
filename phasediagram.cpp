@@ -1062,11 +1062,11 @@ int main(int argc, char** argv) {
             }
         }
 
-//        double xtip = 0.21;//2.4e11;
-//        double xtipwidth = 0.05;//2.8e10;
+        double xtip = 2.4e11;//0.21;//2.4e11;
+        double xtipwidth = 2.8e10;//0.05;//2.8e10;
         //            double xtipwidth = 3e10;
-                    double xtip = 2.57e11;
-                    double xtipwidth = 1e10;
+//                    double xtip = 2.57e11;
+//                    double xtipwidth = 1e10;
         double xtipmin = xtip - xtipwidth;
         double xtipmax = xtip + xtipwidth;
         double dxtip = (xtipmax - xtipmin) / (nxtip - 1);
